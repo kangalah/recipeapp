@@ -1,7 +1,16 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from flask_login import UserMixin
+from . import login_manager
 from . import db
+
+# @login_manager.user_loader
+# def load_user(user_id):
+#     """
+#     @login_manager.user_loader Passes in a user_id to this function
+#     Function queries the database and gets a user's id as a response
+#     """
+#     return User.query.get(int(user_id))
 
 class User(UserMixin, db.Model):
 
@@ -26,12 +35,12 @@ class User(UserMixin, db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-    # @login_manager.user_loader
-    # def load_user(user_id):
-    #     return User.query.get(int(user_id))
-
     def __repr__(self):
         return f'User {self.username}'
+    
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
 
 class Recipe(db.Model):
     
@@ -95,3 +104,4 @@ class Review(db.Model):
         review = Review.query.filter_by(id=review_id).delete()
 
         db.session.commit()
+

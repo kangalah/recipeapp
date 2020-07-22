@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block body %}
+<div class="jumbotron text-center">
+    <h1>Welcome to The Recipe-App</h1>
+    <p class="lead">Welcome to the Recipe App.Get recipes for different dishes and create yours as well  </p>
+</div>
+<div class="container">
+
+    <div class="row">
+
+        <ul >
+            {{ macro.displayRecipeList (blogs) }}
+        </ul>
+
+    </div>
+</div>
+</div>
+</div>
+
+
+{% endblock %}
