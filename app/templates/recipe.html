@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+ {% extends 'base.html' %}
 {% import 'macros.html' as macro %}
 {% import "bootstrap/wtf.html" as wtf %}
 
@@ -73,11 +73,7 @@
 
                     <p> {{recipe.recipe}} </p>
 
-                </div>
 
-                <div class="col-sm-2 col-md-2 col-lg-2"></div>
-
-            </div>
 
 
                 <br> <br>
@@ -126,8 +122,10 @@
 
         </div>
 
-    {% endblock %}
+    {% block title %} {{recipe['title']}} {% endblock %} 
 
 
 </body>
 </html>
+
+ 

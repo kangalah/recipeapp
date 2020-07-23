@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,70 +6,7 @@
 </head>
 <body>
 
-    {% macro displayRecipeList (recipe_list) %}
-
-        {% for recipe in recipe_list %}
-
-            <div class="container">
-
-                <div class="row">
-
-                    <li style="list-style-type: none;">
-
-                        <h2>
-                            <a href="{{url_for('main.single_recipe', id = recipe.id)}}">
-                                {{ recipe.title }}
-                            </a>
-                        </h2>
-
-                        <br>
-
-                            <p style="margin-left: 30px;"> {{ recipe.description }}</p>
-
-                        <hr>
-
-                    </li>
-
-                </div>
-
-            </div>
-
-        {% endfor %}
-
-    {% endmacro %}
-
-
-    {% macro displayReviewList(review_list) %}
-
-        {% for review in review_list %}
-
-            <div class="container">
-
-                <div class="row">
-
-                    <div class="col-md-2"></div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-
-                        <li>
-
-                            <p> {{review.review}} </p>
-
-                            <p> posted by {{ review.user.username }} </p>
-
-                        </li>
-
-                    </div>
-
-                    <div class="col-md-2"></div>
-
-                </div>
-
-            </div>
-
-        {% endfor %}
-
-    {% endmacro %}
+    
 
 </body>
 </html>
