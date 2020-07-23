@@ -44,6 +44,8 @@ class Recipe(db.Model):
     recipe = db.Column(db.String)
     description = db.Column(db.String)
     ingredients = db.Column(db.String)
+    # image_filename = db.Column(db.String, default=None, nullable=True)
+    # image_url = db.Column(db.String, default=None, nullable=True)
     posted = db.Column(db.DateTime, default=datetime.now(tz=None))
     review_id = db.relationship('Review', backref='recipe', lazy='dynamic')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

@@ -10,11 +10,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 
-
-
-
 @main.route('/recipe/<int:id>')
-
 def single_recipe(id):
 
     single_recipe = Recipe.query.get(id)
@@ -24,7 +20,11 @@ def single_recipe(id):
     if single_recipe is None:
         abort (404)
 
+
+    
+
     return render_template('recipe.html', recipe = recipe, reviews=reviews)
+
 
 @main.route('/recipe/review/new/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -48,6 +48,7 @@ def new_review(id):
         return redirect(url_for('.single_recipe', id=recipe.id))
 
     return render_template('new_review.html', review_form=form, recipe=recipe)
+
 
 
 @main.route('/')
