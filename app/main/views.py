@@ -9,7 +9,7 @@ from app.main.forms import LoginForm, RegisterForm, RecipeForm
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 
-from app.main.forms import LoginForm, RegisterForm,AddRecipeForm
+from app.main.forms import LoginForm, RegisterForm,RecipeForm
 
 
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -122,17 +122,7 @@ def logout():
     logout_user()
     return redirect(url_for('main.index'))
 
-@main.route('/add', methods=['GET', 'POST'])
-def add_recipe():
-    form = AddRecipeForm(request.form)
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            new_recipe = Recipe(form.recipe_title.data, form.recipe_description.data)
-            db.session.add(new_recipe)
-            db.session.commit()
-            return redirect(url_for('.index'))
- 
-    return render_template('add_recipe.html',form=form)
+
 
 @main.route('/contact')
 def contact():
