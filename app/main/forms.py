@@ -4,17 +4,25 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms.validators import InputRequired, Email, Length, Required
 
+class RecipeForm(FlaskForm):
 
-class AddRecipeForm(FlaskForm):
-    recipe_title = StringField('Recipe Title', validators=[Required()])
-    recipe_description = StringField('Recipe Description', validators=[Required()])
+
+    title = StringField('Recipe Title', validators=[Required()])
+
+    description = StringField('Recipe Description', validators=[Required()])
+
+    recipe = TextAreaField('Recipe')
+
+    submit = SubmitField('Submit')
+
 
 class LoginForm(FlaskForm):
-    username = StringField('username', validators=[Required()])
-    password = PasswordField('password', validators = [Required()])
+    username = StringField('username', validators=[InputRequired(), Length(min = 4, max = 15)])
+    password = PasswordField('password', validators = [InputRequired()])
     remember = BooleanField('remember me')
 
 class RegisterForm(FlaskForm):
-    email = StringField('email', validators=[Required()])
-    username = StringField('username', validators=[Required()])
-    password = PasswordField('password', validators = [Required()])
+    email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
+    username = StringField('username', validators=[InputRequired(), Length(min=4,max=15)])
+    password = PasswordField('password', validators = [InputRequired()])
+

@@ -21,27 +21,23 @@
 
     <div class="container">
 
-        <div class="row">
+        <form class="form-addrecipe" method="POST" action="/addrecipe">
 
-            <div class="col-md-2 col-lg-2">
+        <h2 class="form-signin-heading">Please type a recipe</h2>    
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.title)}}
+        {{ wtf.form_field(form.description)}}
+        {{ wtf.form_field(form.recipe)}}
+    
+    <button class="btn btn-lg btn-primary btn-block" type="submit" >Add Recipe</button>
+    
+            
 
-            </div>
-
-            <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8">
-
-                {{ wtf.quick_form(recipe_form) }}
-
-                     {{ simplemde.load }}
-
-            </div>
-
-            <div class="col-md-2 col-lg-2">
-
-            </div>
-
-        </div>
+         
 
     </div>
+
+            
 
 {% endblock %}
 

@@ -13,6 +13,7 @@
           
           <a class="nav-link" href="/about">About</a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link" href="/recipe">Recipes</a>
           </li>
@@ -21,17 +22,20 @@
           </li>
 
 
+
           <a class="nav-link" href="/login">Sign In</a>
           
           {% if current_user.is_authenticated %}
 
-           
+            <li class="nav-item">
+              <a class="nav-link" href="/addrecipe">Create A Recipe</a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link"  href="{{url_for('main.logout')}}">Sign Out</a>
             </li>
 
-            {% else %}
+          {% else %}
 
             
           {% endif %}
