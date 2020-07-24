@@ -4,7 +4,7 @@ from . import main
 from .. import db
 from ..models import User,Recipe,Review
 from flask import Flask, render_template, redirect, url_for
-from app.main.forms import LoginForm, RegisterForm
+from app.main.forms import LoginForm, RegisterForm,AddRecipeForm
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -66,7 +66,7 @@ def login():
 
             return redirect(request.args.get('next') or url_for('main.index'))
 
-        flash('Invalid username and/or password')
+        flash('Invalid username or password')
 
     title = 'Login'
     return render_template('login.html', form=form, title=title)
@@ -96,3 +96,19 @@ def dashboard():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+@main.route('/add', methods=['GET', 'POST'])
+def add_recipe():
+    form = AddRecipeForm(request.form)
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            new_recipe = Recipe(form.recipe_title.data, form.recipe_description.data)
+            db.session.add(new_recipe)
+            db.session.commit()
+            return redirect(url_for('.index'))
+ 
+    return render_template('add_recipe.html',form=form)
+
+@main.route('/contact')
+def contact():
+    return render_template('contact.html')

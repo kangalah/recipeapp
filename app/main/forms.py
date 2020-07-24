@@ -5,14 +5,16 @@ from flask_wtf import FlaskForm
 from wtforms.validators import InputRequired, Email, Length, Required
 
 
-
+class AddRecipeForm(FlaskForm):
+    recipe_title = StringField('Recipe Title', validators=[Required()])
+    recipe_description = StringField('Recipe Description', validators=[Required()])
 
 class LoginForm(FlaskForm):
-    username = StringField('username', validators=[InputRequired(), Length(min = 4, max = 15)])
-    password = PasswordField('password', validators = [InputRequired(), Length(min = 8, max = 80)])
+    username = StringField('username', validators=[Required()])
+    password = PasswordField('password', validators = [Required()])
     remember = BooleanField('remember me')
 
 class RegisterForm(FlaskForm):
-    email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
-    username = StringField('username', validators=[InputRequired(), Length(min=4,max=15)])
-    password = PasswordField('password', validators = [InputRequired(), Length(min = 8, max = 80)])
+    email = StringField('email', validators=[Required()])
+    username = StringField('username', validators=[Required()])
+    password = PasswordField('password', validators = [Required()])
