@@ -3,19 +3,28 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block body %}
-<div class="jumbotron text-center" style="color:crimson">
-    <h1>Welcome to The Recipe-App</h1>
+<div class="jumbotron text-center" style="background-color:cyan">
+  {% if current_user.is_authenticated%}
+  <h1>Hello {{current_user.username}}😊 </h1>
+  <h1>Welcome to the Recipe App</h1>
+{% else %}
+<h1>Hi there, Welcome to Recipe App!</h1>
+
+
+{%endif%}
+    
     <p class="lead">Welcome to the Recipe App.Get recipes for different dishes and create yours as well  </p>
-</div>
+
 <h4 class="text-left">
     <a class="btn btn-primary" href="/login">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add a recipe</a>
 </h4>
-<div class="container">
+</div>
+<div class="container-fluid">
 
 <div class="card-deck">
-    <div class="card bg-primary">
-      <div class="card-body text-center">
+    <div class="card bg-secondary">
+      <div class="card-body text-center" style="color:white">
         <p class="card-text">    <h1>Chicken Biryani Recipe</h1>
             <img src="https://miro.medium.com/max/770/0*4wumHkmkVKG38b5l.jpg" width="480" height="380">
             <br>
@@ -46,8 +55,8 @@
             water as required<br></p>
       </div>
     </div>
-    <div class="card bg-warning">
-      <div class="card-body text-center">
+    <div class="card bg-secondary">
+      <div class="card-body text-center" style="color:white">
         <p class="card-text"><h1>East African Pilau</h1>
             <img src="https://cheflolaskitchen.com/wp-content/uploads/2019/12/DSC0362-East-african-pilau-pelau.jpg" width="480" height="380">
 
@@ -77,8 +86,13 @@
             </p>
        </div>
     </div>
-</div>
-</div>
+    </div>
+    </div>
+   
+   
+
+
+
 
 
 {% endblock %}
