@@ -3,6 +3,7 @@ from datetime import datetime
 from flask_login import UserMixin
 from . import login_manager
 from . import db
+from flask_login._compat import unicode
 
 
 class User(UserMixin, db.Model):
@@ -33,7 +34,28 @@ class User(UserMixin, db.Model):
     
     @login_manager.user_loader
     def load_user(user_id):
-        return User.query.get(int(user_id))
+        user = User.query.get(user_id)
+        if user:
+            return DbUser(user)
+        else:
+            return None
+class DbUser(object):
+    """Wraps User object for Flask-Login"""
+    def __init__(self, user):
+        self._user = user
+
+    def get_id(self):
+        return unicode(self._user.id)
+
+    def is_active(self):
+        return self._user.enabled
+
+    def is_anonymous(self):
+        return False
+
+    def is_authenticated(self):
+        return True
+        
 
 class Recipe(db.Model):
     
@@ -72,6 +94,11 @@ class Recipe(db.Model):
         recipe = Review.query.filter_by(id=recipe_id).edit()
 
         db.session.commit()
+    
+    @classmethod
+    def get_recipe(cls, id):
+        recipes = Recipe.query.all()
+        return recipes
 
 class Review(db.Model):
     

@@ -3,15 +3,31 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block body %}
-<div class="jumbotron text-center" style="color:crimson">
-    <h1>Welcome to The Recipe-App</h1>
+
+<div class="jumbotron text-center" style="background-color:linen">
+  {% if current_user.is_authenticated%}
+    <h1>Hello {{current_user.username}}😊 </h1>
+    <h1>Welcome to the Recipe App</h1>
+  {% else %}
     <p class="lead">Welcome to the Recipe App.Get recipes for different dishes and create yours as well  </p>
-</div>
+
+
+  {%endif%}
 <h4 class="text-left">
     <a class="btn btn-primary" href="/login">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add a recipe</a>
-</h4>
+</h4>    
+</div>
 <div class="container">
+  {% for recipe in recipes %}
+  <div class="row my-pitches">
+    <div class="col-md-12">
+        <h4>{{recipe.title}}</h4>
+        <p>{{recipe.description}}</p>
+        
+    </div>
+  </div>
+  {% endfor %}
 
 <div class="card-deck">
     <div class="card bg-primary">
@@ -49,7 +65,7 @@
     <div class="card bg-warning">
       <div class="card-body text-center">
         <p class="card-text"><h1>East African Pilau</h1>
-            <img src="https://cheflolaskitchen.com/wp-content/uploads/2019/12/DSC0362-East-african-pilau-pelau.jpg" width="480" height="380">
+            <img src="https://lonnolodge.com/wp-content/uploads/2020/04/2020-Swahili-Pilau-with-Chapati-1120x629.jpg" width="480" height="380">
 
             <br>
             <h3>Ingredients for East African Pilau</h3>

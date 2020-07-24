@@ -1,34 +1,22 @@
-<!-- {% extends "bootstrap/base.html" %}
+{% extends "bootstrap/base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
  
 {% block content %}
- 
-<div class="add-recipe">
-  <div class="page-header">
-    <h2>Add a New Recipe</h2>
-  </div>
-  <form class="form-AddRecipe"action="/add" method="POST" >
-    
+<div class = "container">
+  <form class="form-signin" method="POST" action="/addrecipe">
+      <h2 class="form-signin-heading">Add A Recipe</h2>
       {{ form.hidden_tag() }}
-      {{ wtf.form_field(form.recipe_title, placeholder="Enter Recipe Title") }}
-      {{ wtf.form_field(form.recipe_description, placeholder="Enter Recipe Description") }}
-      {{ render_field(form.recipe_image) }} -->
-    
-    <!-- <button class="btn btn-sm btn-success" type="submit">Add Recipe</button> -->
-                   <!--flash message -->
-                   <!-- {% for message in get_flashed_messages() %}
+      {{ wtf.form_field(form.title)}}
+      {{ wtf.form_field(form.description)}}
+      {{ wtf.form_field(form.recipe)}}
+     
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Add Recipe</button>
+  
+  </form>
 
-                   <div class="alert alert-danger">
-
-                       <button type="button" class="close" data-dismiss="alert"> &times; </button>
-
-                           {{ message }}
-
-                   </div>
-
-               {% endfor %} -->
-  <!-- </form>
 </div>
  
-{% endblock %}  -->
+
+ 
+{% endblock %} 
